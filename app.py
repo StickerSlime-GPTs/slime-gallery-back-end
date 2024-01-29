@@ -6,14 +6,12 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# API 키 로드
 api_key = config('API_KEY')
 
 @app.route('/removebg', methods=['POST'])
 def remove_background():
     try:
         image_file = request.files['image_file']
-        api_key = API_KEY
         response = requests.post(
             'https://api.remove.bg/v1.0/removebg',
             files={'image_file': image_file},

@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 import requests
 from decouple import config
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # API 키 로드
 api_key = config('API_KEY')

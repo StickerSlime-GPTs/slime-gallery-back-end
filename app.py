@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import requests
 from decouple import config
 from flask_cors import CORS
@@ -19,7 +19,8 @@ def remove_background():
             headers={'X-Api-Key': api_key},
         )
         if response.status_code == requests.codes.ok:
-            return jsonify({'success': True, 'message': 'Background removed', 'image_data': response.content.decode('utf-8')})
+            # 바이너리 형태의 이미지 데이터를 직접 반환
+            return Response(response.content, mimetype='image/png')
         else:
             return jsonify({'success': False, 'error_message': 'Background removal failed', 'status_code': response.status_code})
     except Exception as e:

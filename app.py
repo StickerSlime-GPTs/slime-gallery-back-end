@@ -4,7 +4,7 @@ from decouple import config
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://slime-gallery.vercel.app", "http://localhost:3000"])
 
 api_key = config('API_KEY')
 
